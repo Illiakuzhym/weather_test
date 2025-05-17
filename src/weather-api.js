@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const API_KEY = process.env.WEATHER_API_KEY;
 
-async function getWeather(city) {
+async function getWeatherApi(city) {
   try {
     const res = await axios.get('http://api.weatherapi.com/v1/current.json', {
       params: {
@@ -26,4 +26,4 @@ async function getWeather(city) {
   }
 }
 
-module.exports = { getWeather };
+module.exports = { getWeatherApi };
