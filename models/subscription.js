@@ -1,33 +1,28 @@
+// models/subscription.js
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-class Subscription extends Model {
-    static associate(models) {
-      // зв'язки якщо будуть
-    }
-  }
+const { Model } = require('sequelize');
+const { v4: uuid } = require('uuid');
 
-  Subscription.init({
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
+module.exports = (sequelize, DataTypes) => {
+  class Subscription extends Model {}
+
+  Subscription.init(
+    {
+      email: { type: DataTypes.STRING, allowNull: false },
+      city:  { type: DataTypes.STRING, allowNull: false },
+      frequency: {
+        type: DataTypes.ENUM('hourly', 'daily'),
+        allowNull: false
+      },
+      confirmed: { type: DataTypes.BOOLEAN, defaultValue: false },
+      token: { type: DataTypes.STRING, defaultValue: uuid }
     },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'Subscription',
+      indexes: [{ unique: true, fields: ['email', 'city'] }]
     }
-  }, {
-    sequelize,
-    modelName: 'Subscription',
-    indexes: [
-      {
-        unique: true,
-        fields: ['email', 'city']
-      }
-    ]
-  });
+  );
 
   return Subscription;
 };

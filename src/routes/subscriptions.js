@@ -1,13 +1,12 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const {
   subscribe,
-  unsubscribe,
-  listSubscriptions,
+  confirmSubscription,
+  unsubscribe
 } = require('../controllers/subscriptionController');
 
-router.post('/subscribe', subscribe);
-router.delete('/unsubscribe/:id', unsubscribe);
-router.get('/subscriptions', listSubscriptions); // Тестовий маршрут
+router.post('/subscribe', subscribe);             // POST /api/subscribe
+router.get('/confirm/:token', confirmSubscription); // GET /api/confirm/{token}
+router.get('/unsubscribe/:token', unsubscribe);     // GET /api/unsubscribe/{token}
 
 module.exports = router;

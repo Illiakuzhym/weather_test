@@ -1,31 +1,28 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: 'smtp.gmail.com',
   port: 465,
-  secure: true, // TLS
-  auth: {
-    user: process.env.EMAIL_FROM,
-    pass: process.env.EMAIL_APP_PASS,
-  }
+  secure: true,
+  auth: { user: process.env.EMAIL_FROM, pass: process.env.EMAIL_APP_PASS }
 });
 
-async function sendWeatherEmail(to, city, condition, temp) {
-  const message = {
+exports.sendMailConfirm = (to, token) =>
+  transporter.sendMail({
     from: process.env.EMAIL_FROM,
-    to: to,
-    subject: `Прогноз погоди для ${city}`,
-    text: `Оновлений прогноз погоди у місті ${city}:\n\n${condition} temp:${temp}`,
-  };
+    to,
+    subject: 'Confirm your weather subscription',
+    html: `Перейдіть за посиланням, щоб підтвердити:<br>
+           <a href="${BASE_URL}/api/confirm/${token}">${BASE_URL}/api/confirm/${token}</a>`
+  });
 
-  try {
-    let info = await transporter.sendMail(message);
-    console.log("✅ Лист надіслано:", info.messageId);
-  } catch (error) {
-    console.error("❌ Помилка під час надсилання листа:", error);
-  }
-  
-}
-
-module.exports = { sendWeatherEmail };
+exports.sendMailAlreadySubscribed = (to, token) =>
+  transporter.sendMail({
+    from: process.env.EMAIL_FROM,
+    to,
+    subject: 'Already subscribed',
+    html: `Ви вже підписані. Якщо хочете відписатись:<br>
+           <a href="${BASE_URL}/api/unsubscribe/${token}">${BASE_URL}/api/unsubscribe/${token}</a>`
+  });
