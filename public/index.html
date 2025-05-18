@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather subscription</title>
+</head>
+<body>
+  <h1>Subscribtion weather forecast</h1>
+  <form id="subscribe-form">
+    <label>
+      Email:
+      <input type="email" name="email" required />
+    </label><br><br>
+
+    <label>
+      City:
+      <input type="text" id="city" name="city" list="city-list" required />
+      <datalist id="city-list"></datalist>
+    </label><br><br>
+
+    <label>
+      Frequency:
+      <select name="frequency" required>
+        <option value="hourly">Hourly</option>
+        <option value="daily">Daily</option>
+      </select>
+    </label><br><br>
+
+    <button type="submit">subscribe</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    const form = document.getElementById("subscribe-form");
+    const result = document.getElementById("result");
+    const cityInput = document.getElementById("city");
+    const datalist = document.getElementById("city-list");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const body = new URLSearchParams(formData);
+
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: body.toString(),
+      });
+
+      const data = await res.json();
+      result.innerText = data.message || data.error || "Невідома відповідь";
+      result.style.color = res.ok ? "green" : "red";
+    });
+
+    cityInput.addEventListener("input", async () => {
+      const query = cityInput.value.trim();
+      if (query.length < 2) return;
+
+      const res = await fetch(`/api/cities?query=${encodeURIComponent(query)}`);
+      if (!res.ok) return;
+
+      const cities = await res.json();
+      datalist.innerHTML = '';
+      cities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.name;
+        datalist.appendChild(option);
+      });
+    });
+  </script>
+</body>
+</html>
