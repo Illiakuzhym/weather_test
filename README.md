@@ -99,7 +99,6 @@ DB_PORT=5433
 DB_TEST_PORT=5432
 WEATHER_API_KEY=your_key
 EMAIL_FROM=test@example.com
-EMAIL_PASS=password
 EMAIL_APP_PASS=your_app_password
 DB_NAME_TEST=weather_test
 BASE_URL=BASE_URL
