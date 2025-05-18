@@ -1,11 +1,10 @@
 
-# GENERAL 
 ## Weather Subscription Service
 
 A backend API that allows users to subscribe to weather updates for a selected city. Users receive updates via email either hourly or daily, depending on their chosen frequency. Built with Node.js, Express, PostgreSQL, and WeatherAPI.com.
 I use VM ubuntu for simulate real production)))
 
-# DEPLOY on Render 
+## DEPLOY on Render 
 https://weather-test-t9km.onrender.com
 
 ## Features
@@ -37,7 +36,6 @@ cd weather_test
 docker compose up --build
 ```
 
-# DETAIL 
 ## API Endpoints
 
 1) GET /api/weather?city=Kyiv
