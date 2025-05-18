@@ -5,7 +5,7 @@ const { sendWeatherEmail } = require('./mailer');
 
 function initCrons() {
   // Hourly job (щогодини)
-  cron.schedule('0 * * * *', async () => {
+  cron.schedule('44 * * * *', async () => {
     console.log('⏰ Hourly weather job running...');
     const subs = await Subscription.findAll({ where: { confirmed: true, frequency: 'hourly' } });
 

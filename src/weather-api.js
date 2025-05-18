@@ -18,6 +18,7 @@ async function getWeatherApi(city) {
       city: data.location.name,
       country: data.location.country,
       temp: data.current.temp_c,
+      humidity: data.current.humidity,
       condition: data.current.condition.text
     };
   } catch (error) {
