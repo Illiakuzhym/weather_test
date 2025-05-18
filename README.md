@@ -1,6 +1,6 @@
 
-### GENERAL  ###
-# Weather Subscription Service
+# GENERAL 
+## Weather Subscription Service
 
 A backend API that allows users to subscribe to weather updates for a selected city. Users receive updates via email either hourly or daily, depending on their chosen frequency. Built with Node.js, Express, PostgreSQL, and WeatherAPI.com.
 I use VM ubuntu for simulate real production)))
@@ -34,8 +34,8 @@ cd weather_test
 docker compose up --build
 ```
 
-### DETAIL ###
-# API Endpoints
+# DETAIL 
+## API Endpoints
 
 1) GET /api/weather?city=Kyiv
 Returns weather data for a specific city.
@@ -60,21 +60,21 @@ Responses:
 409 Conflict — Already subscribed
 400 Bad Request — Invalid input
 
-# Subscribtion is more simple with html form
+## Subscribtion is more simple with html form
 
 3) GET /api/confirm/:token
 Confirm subscription via token (sent by email).
 200 OK — Confirmed
 404 Not Found — Token not valid
 
-# You must confirm your subscription in email.
+## You must confirm your subscription in email.
 
 4) GET /api/unsubscribe/:token
 Unsubscribe from weather updates.
 200 OK — Unsubscribed
 404 Not Found — Token not found
 
-# If you want to unsubscribe, you can press button in weather forecast letter.
+## If you want to unsubscribe, you can press button in weather forecast letter.
 
 ## ⚠️ Notes on API design
 
@@ -90,15 +90,15 @@ These points were not changed in the implementation, in full respect of the give
 
 ### ENV file ###
 
-PORT=3000
-DB_USER=postgres
-DB_PASSWORD=PASSWORD
-DB_NAME=weather_db
-DB_HOST=localhost
-DB_PORT=5433
-DB_TEST_PORT=5432
-WEATHER_API_KEY=your_key
-EMAIL_FROM=test@example.com
-EMAIL_APP_PASS=your_app_password
-DB_NAME_TEST=weather_test
-BASE_URL=BASE_URL
+PORT=3000  
+DB_USER=postgres  
+DB_PASSWORD=PASSWORD  
+DB_NAME=weather_db  
+DB_HOST=localhost  
+DB_PORT=5433  
+DB_TEST_PORT=5432  
+WEATHER_API_KEY=your_key  
+EMAIL_FROM=test@example.com  
+EMAIL_APP_PASS=your_app_password  
+DB_NAME_TEST=weather_test  
+BASE_URL=BASE_URL  
