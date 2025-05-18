@@ -88,3 +88,18 @@ However, I would like to point out that certain aspects of the specification cou
 
 These points were not changed in the implementation, in full respect of the given task constraints.
 
+### ENV file ###
+
+PORT=3000
+DB_USER=postgres
+DB_PASSWORD=PASSWORD
+DB_NAME=weather_db
+DB_HOST=localhost
+DB_PORT=5433
+DB_TEST_PORT=5432
+WEATHER_API_KEY=your_key
+EMAIL_FROM=test@example.com
+EMAIL_PASS=password
+EMAIL_APP_PASS=your_app_password
+DB_NAME_TEST=weather_test
+BASE_URL=BASE_URL
