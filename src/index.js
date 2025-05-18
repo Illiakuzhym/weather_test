@@ -18,6 +18,6 @@ exec('npx sequelize-cli db:migrate', (err, stdout, stderr) => {
   initCrons();
 
   app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running`);
   });
 });
