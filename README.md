@@ -5,6 +5,9 @@
 A backend API that allows users to subscribe to weather updates for a selected city. Users receive updates via email either hourly or daily, depending on their chosen frequency. Built with Node.js, Express, PostgreSQL, and WeatherAPI.com.
 I use VM ubuntu for simulate real production)))
 
+# DEPLOY on Render 
+https://weather-test-t9km.onrender.com
+
 ## Features
 
 - 🌐 RESTful API (documented via Swagger)
