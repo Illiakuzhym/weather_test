@@ -1,4 +1,3 @@
-// models/subscription.js
 'use strict';
 const { Model } = require('sequelize');
 const { v4: uuid } = require('uuid');

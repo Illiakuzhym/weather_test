@@ -5,8 +5,8 @@ const {
   unsubscribe
 } = require('../controllers/subscriptionController');
 
-router.post('/subscribe', subscribe);             // POST /api/subscribe
-router.get('/confirm/:token', confirmSubscription); // GET /api/confirm/{token}
-router.get('/unsubscribe/:token', unsubscribe);     // GET /api/unsubscribe/{token}
+router.post('/subscribe', subscribe);             
+router.get('/confirm/:token', confirmSubscription); 
+router.get('/unsubscribe/:token', unsubscribe);     
 
 module.exports = router;

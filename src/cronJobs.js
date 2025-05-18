@@ -5,7 +5,7 @@ const { sendWeatherEmail } = require('./mailer');
 
 function initCrons() {
   // Hourly job (щогодини)
-  cron.schedule('44 * * * *', async () => {
+  cron.schedule('0 * * * *', async () => {
     console.log('⏰ Hourly weather job running...');
     const subs = await Subscription.findAll({ where: { confirmed: true, frequency: 'hourly' } });
 
@@ -15,7 +15,8 @@ function initCrons() {
       await sendWeatherEmail(
         s.email,
         s.city,
-        `${data.condition}. ${data.temp}°C, вологість ${data.humidity}%`
+        `${data.condition}. ${data.temp}°C, humidity ${data.humidity}%`,
+        s.token
       );
     }
   });
@@ -31,7 +32,8 @@ function initCrons() {
       await sendWeatherEmail(
         s.email,
         s.city,
-        `${data.condition}. ${data.temp}°C, вологість ${data.humidity}%`
+        `${data.condition}. ${data.temp}°C, humidity ${data.humidity}%`,
+        s.token
       );
     }
   });

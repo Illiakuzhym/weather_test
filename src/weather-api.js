@@ -22,7 +22,7 @@ async function getWeatherApi(city) {
       condition: data.current.condition.text
     };
   } catch (error) {
-    console.error(`Помилка при отриманні погоди для ${city}:`, error.message);
+    console.error(`Error getting weather for ${city}:`, error.message);
     return null;
   }
 }
